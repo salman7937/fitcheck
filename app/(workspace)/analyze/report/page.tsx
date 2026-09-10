@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight, RefreshCw, FileText, AlertCircle } from "lucide-react";
+import { Sparkles, ArrowRight, RefreshCw, AlertCircle } from "lucide-react";
 import { useSessionStore } from "@/store/session";
 import { ScoreDial } from "@/features/analysis/components/score-dial";
 import { SubscoreBars } from "@/features/analysis/components/subscore-bars";

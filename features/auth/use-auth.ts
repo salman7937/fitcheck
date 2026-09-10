@@ -27,6 +27,7 @@ export function useAuth(): AuthState {
     if (!auth) {
       // No Firebase project configured yet — resolve to a signed-out state
       // rather than leaving the UI stuck on a placeholder forever.
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- one-shot terminal state, no cascade
       setResolved(true);
       return;
     }

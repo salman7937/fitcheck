@@ -141,7 +141,10 @@ async function callOpenAICompatible(
   extraInstruction: string | undefined,
   maxTokens: number
 ): Promise<string> {
-  const contentParts: any[] = [];
+  type ContentPart =
+    | { type: "text"; text: string }
+    | { type: "image_url"; image_url: { url: string } };
+  const contentParts: ContentPart[] = [];
 
   for (const part of parts) {
     if ("text" in part) {
@@ -169,7 +172,9 @@ async function callOpenAICompatible(
 
   const isAllText = contentParts.every((p) => p.type === "text");
   const userContent = isAllText
-    ? contentParts.map((p) => p.text).join("\n\n")
+    ? contentParts
+        .map((p) => (p.type === "text" ? p.text : ""))
+        .join("\n\n")
     : contentParts;
 
   const response = await fetch(`${config.baseUrl}/chat/completions`, {

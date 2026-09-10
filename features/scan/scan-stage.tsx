@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Sparkles, Scan, FileSearch, CheckCircle2 } from "lucide-react";
+import { Scan, CheckCircle2 } from "lucide-react";
 import { useScanBeam } from "./use-scan-timeline";
 import { KeywordChip } from "./keyword-chip";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AlertTriangle, AlertCircle, Sparkles, CheckCircle2, Wrench, ShieldAlert } from "lucide-react";
+import { AlertTriangle, AlertCircle, Sparkles, Wrench, ShieldAlert } from "lucide-react";
 import type { Finding } from "@/features/analysis/schema";
 
 const SEVERITY_CONFIG: Record<

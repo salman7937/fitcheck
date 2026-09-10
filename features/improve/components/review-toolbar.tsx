@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, Loader2, Sparkles, TrendingUp } from "lucide-react";
+import { Download, Loader2, TrendingUp } from "lucide-react";
 
 export function ReviewToolbar({
   score,

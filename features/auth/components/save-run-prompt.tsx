@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { LogIn, ShieldCheck, Sparkles, X } from "lucide-react";
+import { LogIn, Sparkles, X } from "lucide-react";
 import { useAuthContext } from "./auth-provider";
 import { SignInDialog } from "./sign-in-dialog";
 

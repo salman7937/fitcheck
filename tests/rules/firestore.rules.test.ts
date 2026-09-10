@@ -10,7 +10,7 @@
  * It is intentionally excluded from the default `npm run test` (vitest.config.ts
  * only picks up tests/unit) so CI doesn't fail without the emulator installed.
  */
-import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { describe, it, beforeAll, afterAll } from "vitest";
 import {
   initializeTestEnvironment,
   assertFails,

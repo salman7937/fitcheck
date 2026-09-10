@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShieldAlert, Check, FileCode2, Sparkles, HelpCircle } from "lucide-react";
+import { ShieldAlert, Check, FileCode2, Sparkles } from "lucide-react";
 import type { Change } from "@/features/improve/schema";
 import { DiffText } from "./diff-text";
 

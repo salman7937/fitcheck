@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, Award } from "lucide-react";
+import { Briefcase, Calendar } from "lucide-react";
 import type { Run } from "@/features/history/schema";
 import { scoreBand } from "@/features/analysis/score";
 

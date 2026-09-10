@@ -38,6 +38,8 @@ export function AccountMenu() {
       await fetch("/api/auth/account", { method: "DELETE" });
       const auth = getFirebaseAuth();
       if (auth) await signOut(auth);
+      // Full reload on purpose: wipe all client state (auth, store) after account deletion.
+      // eslint-disable-next-line @next/next/no-location-assign-relative-destination
       window.location.href = "/";
     } finally {
       setBusy(false);

@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import {
-  Sparkles,
   Loader2,
-  CheckCircle2,
   AlertTriangle,
   FileCheck2,
   ArrowLeft,
@@ -36,6 +34,7 @@ export default function ReviewPage() {
     if (!resume || !jobDescription || !analysis) return;
     if (changes) return;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- kicks off a one-time fetch on mount
     setLoading(true);
     improveRequest<{ changes: Change[] }>(resume, jobDescription, analysis)
       .then((result) => setChanges(result.changes))

@@ -4,9 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  ShieldCheck,
   CheckCircle2,
-  Zap,
   Lock,
   FileCheck2,
   Sparkles,
