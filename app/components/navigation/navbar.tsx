@@ -15,7 +15,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-paper/85 backdrop-blur-md border-b border-rule/70 transition-all duration-200">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2">
         {/* Brand Logo */}
         <Link
           href="/"
@@ -61,6 +61,31 @@ export function Navbar() {
           <AccountMenu />
         </div>
       </div>
+
+      {/* Mobile Nav Links */}
+      <nav
+        aria-label="Main navigation"
+        className="sm:hidden flex items-center gap-1 px-4 pb-2 -mt-1 overflow-x-auto"
+      >
+        {navLinks.map((link) => {
+          const Icon = link.icon;
+          const isActive = pathname.startsWith(link.href);
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all border ${
+                isActive
+                  ? "bg-graphite text-white border-graphite"
+                  : "text-muted border-rule/60 bg-white/60 hover:text-graphite"
+              }`}
+            >
+              <Icon className="w-3.5 h-3.5" />
+              {link.label}
+            </Link>
+          );
+        })}
+      </nav>
     </header>
   );
 }

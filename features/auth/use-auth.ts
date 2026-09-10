@@ -22,6 +22,11 @@ export type AuthState = {
 export function useAuth(): AuthState {
   const [user, setUser] = useState<User | null>(null);
   const [resolved, setResolved] = useState(false);
+  // Firebase mutates the same User instance in place when an anonymous account
+  // is linked to Google, so setUser(nextUser) is a no-op reference-wise and the
+  // UI stays on "Sign in" until a reload. Bump a nonce on every token change to
+  // force the re-render.
+  const [, setNonce] = useState(0);
 
   useEffect(() => {
     const auth = getFirebaseAuth();
@@ -53,6 +58,7 @@ export function useAuth(): AuthState {
       await syncSession(nextUser);
       setUser(nextUser);
       setResolved(true);
+      setNonce((n) => n + 1);
     });
 
     return unsubscribe;

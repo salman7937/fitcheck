@@ -48,8 +48,8 @@ export function AccountMenu() {
 
   if (isAnonymous) {
     return (
-      <div className="flex items-center gap-3">
-        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono bg-gap/10 text-gap border border-gap/20 font-medium">
+      <div className="flex items-center gap-2 sm:gap-3">
+        <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono bg-gap/10 text-gap border border-gap/20 font-medium">
           <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-gap animate-pulse inline-block" />
           Unsaved Run
         </span>
@@ -58,8 +58,9 @@ export function AccountMenu() {
             onClick={() => setShowSignIn((v) => !v)}
             className="flex items-center gap-1.5 text-xs font-medium bg-beam text-white hover:bg-beam/90 px-3.5 py-1.5 rounded-full transition-all shadow-sm shadow-beam/20"
           >
-            <LogIn className="w-3.5 h-3.5" />
-            Sign in with Google
+            <LogIn className="w-3.5 h-3.5 shrink-0" />
+            <span className="sm:hidden">Sign in</span>
+            <span className="hidden sm:inline">Sign in with Google</span>
           </button>
           {showSignIn && (
             <div className="absolute right-0 top-10 z-50 w-72">
