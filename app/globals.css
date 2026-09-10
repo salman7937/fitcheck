@@ -1,26 +1,139 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f6f7f5;
+  --graphite: #15181b;
+  --muted: #6e7580;
+  --rule: #dee2de;
+  --beam: #4b2ee8;
+  --beam-light: rgba(75, 46, 232, 0.08);
+  --beam-glow: rgba(75, 46, 232, 0.35);
+  --match: #0b7a6b;
+  --match-light: rgba(11, 122, 107, 0.1);
+  --gap: #c42b6b;
+  --gap-light: rgba(196, 43, 107, 0.1);
+  --card-bg: #ffffff;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-graphite: var(--graphite);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-beam: var(--beam);
+  --color-beam-light: var(--beam-light);
+  --color-match: var(--match);
+  --color-match-light: var(--match-light);
+  --color-gap: var(--gap);
+  --color-gap-light: var(--gap-light);
+
+  --font-display: var(--font-bricolage), sans-serif;
+  --font-sans: var(--font-instrument), sans-serif;
+  --font-mono: var(--font-jetbrains), monospace;
+
+  --shadow-card: 0 1px 3px rgba(21, 24, 27, 0.04), 0 4px 12px rgba(21, 24, 27, 0.02);
+  --shadow-elevated: 0 10px 30px -5px rgba(21, 24, 27, 0.08), 0 4px 10px -2px rgba(75, 46, 232, 0.05);
+  --shadow-beam: 0 0 20px rgba(75, 46, 232, 0.35);
+
+  --radius-card: 10px;
+  --radius-chip: 6px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark mode is out of scope for v1 — a document product defaults to paper (§9.2). */
+
+* {
+  border-color: var(--rule);
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  background: var(--paper);
+  color: var(--graphite);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
 }
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--beam);
+  outline-offset: 2px;
+}
+
+/* Scan laser shimmer keyframes */
+@keyframes laserSweep {
+  0% {
+    opacity: 0.4;
+    box-shadow: 0 0 10px var(--beam), 0 0 20px var(--beam);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 18px var(--beam), 0 0 35px var(--beam);
+  }
+  100% {
+    opacity: 0.4;
+    box-shadow: 0 0 10px var(--beam), 0 0 20px var(--beam);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+.animate-laser {
+  animation: laserSweep 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
