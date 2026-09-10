@@ -15,19 +15,19 @@ function getRedis(): Redis {
   return redis;
 }
 
-/** §6.6: rate limiting keys on uid, not IP — 2/day anonymous, 10/day Google. */
+/** §6.6: rate limiting keys on uid, not IP. Limits raised for testing. */
 function getUidLimiters() {
   if (!uidLimiters) {
     const client = getRedis();
     uidLimiters = {
       anonymous: new Ratelimit({
         redis: client,
-        limiter: Ratelimit.slidingWindow(2, "24 h"),
+        limiter: Ratelimit.slidingWindow(20, "24 h"),
         prefix: "ratelimit:analyze:anon",
       }),
       google: new Ratelimit({
         redis: client,
-        limiter: Ratelimit.slidingWindow(10, "24 h"),
+        limiter: Ratelimit.slidingWindow(100, "24 h"),
         prefix: "ratelimit:analyze:google",
       }),
     };
@@ -40,7 +40,7 @@ function getIpLimiter(): Ratelimit {
   if (!ipLimiter) {
     ipLimiter = new Ratelimit({
       redis: getRedis(),
-      limiter: Ratelimit.slidingWindow(20, "24 h"),
+      limiter: Ratelimit.slidingWindow(200, "24 h"),
       prefix: "ratelimit:analyze:ip",
     });
   }
