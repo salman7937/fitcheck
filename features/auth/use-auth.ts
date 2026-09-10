@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { onIdTokenChanged, signInAnonymously, type User } from "firebase/auth";
 import { getFirebaseAuth } from "@/lib/firebase/client";
 import { syncSession } from "./sync-session";
+import { completeRedirectSignIn } from "./sign-in";
 
 export type AuthState = {
   user: User | null;
@@ -31,6 +32,12 @@ export function useAuth(): AuthState {
       setResolved(true);
       return;
     }
+
+    // If the user just returned from a redirect sign-in, finish it before
+    // the token listener below reacts to the new user.
+    completeRedirectSignIn(auth).catch((err) =>
+      console.error("Redirect sign-in completion failed:", err)
+    );
 
     const unsubscribe = onIdTokenChanged(auth, async (nextUser) => {
       if (!nextUser) {
